@@ -1,10 +1,5 @@
-# Install Ruby from packages
-apt-get -y install ruby ruby-dev libopenssl-ruby1.8 irb ri rdoc
+# Wheezy has a reasonable base Ruby, so put that in place so things in
+# Debian-land can see it. As of 1.9, Rubygems is also packaged, so we
+# save a step. We'll use rbenv inside the VM for a bit more control.
+apt-get -y install ruby ruby-dev libruby ri
 
-# Install Rubygems from source
-rg_ver=1.8.22
-curl -o /tmp/rubygems-${rg_ver}.zip \
-  "http://production.cf.rubygems.org/rubygems/rubygems-${rg_ver}.zip"
-(cd /tmp && unzip rubygems-${rg_ver}.zip && \
-  cd rubygems-${rg_ver} && ruby setup.rb --no-format-executable)
-rm -rf /tmp/rubygems-${rg_ver} /tmp/rubygems-${rg_ver}.zip
